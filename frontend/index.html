@@ -2261,7 +2261,9 @@
                 autocomplete="email"
                 inputmode="email"
               />
-              <button type="submit" class="cta__btn">Free-ஆ start →</button>
+              <button type="submit" class="cta__btn" onclick="goToSignup(event)">
+                Free-ஆ start →
+              </button>
             </form>
             <p class="cta__fine tamil">
               Card வேண்டாம் · App download வேண்டாம் · எந்த நேரமும் cancel பண்ணலாம்
@@ -2501,6 +2503,17 @@
         document
           .querySelectorAll('.marquee__track')
           .forEach((el) => (el.style.animationDuration = '0.001s'))
+      }
+
+      /* ── GO TO SIGNUP ── */
+      function goToSignup(e) {
+        e.preventDefault()
+        const email = document.getElementById('signup-email').value.trim()
+        if (email) {
+          window.location.href = '/signup?email=' + encodeURIComponent(email)
+        } else {
+          window.location.href = '/signup'
+        }
       }
     </script>
   </body>
