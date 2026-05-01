@@ -310,6 +310,14 @@ Rules:
 - Never make up facts — if unsure say so`
 }
 
+// ── ROUTE: PUBLIC CONFIG ──
+app.get('/api/config', (req, res) => {
+  res.json({
+    supabase_url: process.env.SUPABASE_URL,
+    supabase_anon_key: process.env.SUPABASE_ANON_KEY,
+  })
+})
+
 // ============================================
 // START SERVER
 // ============================================

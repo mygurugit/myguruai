@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="ta">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up — MyGuru AI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --navy: #0f2548;
+        --accent: #c8891a;
+        --white: #fff;
+        --paper: #fafaf7;
+        --ink: #0c1421;
+        --muted: #5a6175;
+        --border: #e3e5ee;
+        --error: #9b2335;
+        --success: #0a7c6a;
+        --font: 'Plus Jakarta Sans', sans-serif;
+        --tamil: 'Noto Sans Tamil', 'Plus Jakarta Sans', sans-serif;
+      }
+      body {
+        font-family: var(--font);
+        background: var(--paper);
+        color: var(--ink);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 32px;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+      }
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+        background: var(--navy);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo-mark svg {
+        width: 20px;
+        height: 20px;
+      }
+      .logo-name {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .logo-name span {
+        color: var(--accent);
+      }
+      .nav-link {
+        font-size: 0.875rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .nav-link:hover {
+        color: var(--navy);
+      }
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+      }
+      .card {
+        background: #fff;
+        border: 1.5px solid var(--border);
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        width: 100%;
+        max-width: 480px;
+        box-shadow: 0 8px 32px rgba(15, 37, 72, 0.08);
+      }
+      .card-icon {
+        width: 56px;
+        height: 56px;
+        background: rgba(15, 37, 72, 0.06);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 1.5rem;
+      }
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--ink);
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      .card-sub {
+        font-size: 0.875rem;
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.65;
+        margin-bottom: 2rem;
+        font-family: var(--tamil);
+      }
+      .progress {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+      .progress-dot {
+        flex: 1;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--border);
+        transition: background 0.3s;
+      }
+      .progress-dot.done {
+        background: var(--navy);
+      }
+      .progress-dot.active {
+        background: var(--accent);
+      }
+      .step {
+        display: none;
+      }
+      .step.active {
+        display: block;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      label {
+        display: block;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+      }
+      input {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        font-size: 0.9375rem;
+        font-family: var(--font);
+        color: var(--ink);
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      input:focus {
+        border-color: var(--navy);
+      }
+      .exam-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      .exam-card {
+        border: 1.5px solid var(--border);
+        border-radius: 14px;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all 0.15s;
+        text-align: center;
+      }
+      .exam-card:hover {
+        border-color: var(--navy);
+        background: rgba(15, 37, 72, 0.03);
+      }
+      .exam-card.selected {
+        border-color: var(--navy);
+        background: rgba(15, 37, 72, 0.06);
+      }
+      .exam-card.selected .exam-check {
+        opacity: 1;
+      }
+      .exam-emoji {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .exam-name {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .exam-price {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 0.25rem;
+      }
+      .exam-check {
+        font-size: 0.75rem;
+        color: var(--navy);
+        font-weight: 700;
+        margin-top: 0.25rem;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+      .otp-grid {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      .otp-input {
+        width: 48px;
+        height: 56px;
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 700;
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .otp-input:focus {
+        border-color: var(--navy);
+      }
+      .btn {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        font-family: var(--font);
+        border: none;
+        cursor: pointer;
+        transition: all 0.15s;
+        margin-top: 0.5rem;
+      }
+      .btn-primary {
+        background: var(--navy);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #163560;
+        transform: translateY(-1px);
+      }
+      .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .status-box {
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.8125rem;
+        margin-bottom: 1rem;
+        display: none;
+        line-height: 1.55;
+      }
+      .status-box.show {
+        display: block;
+      }
+      .status-box.success {
+        background: #e2f5f1;
+        color: var(--success);
+      }
+      .status-box.error {
+        background: #fbebee;
+        color: var(--error);
+      }
+      .free-badge {
+        background: #e2f5f1;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 0.8125rem;
+        color: var(--success);
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .login-row {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.8125rem;
+        color: var(--muted);
+      }
+      .login-row a {
+        color: var(--navy);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .loader {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .loading-screen {
+        position: fixed;
+        inset: 0;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .loading-screen.hidden {
+        display: none;
+      }
+      .loading-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--navy);
+        animation: pulse 1.2s ease infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      footer {
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      @media (max-width: 480px) {
+        nav {
+          padding: 14px 16px;
+        }
+        .card {
+          padding: 2rem 1.25rem;
+          border-radius: 16px;
+        }
+        .otp-input {
+          width: 42px;
+          height: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- LOADING -->
+    <div class="loading-screen" id="loading-screen">
+      <div style="font-size: 1.5rem; font-weight: 700; color: #0f2548">MyGuru AI</div>
+      <div class="loading-dot"></div>
+    </div>
+
+    <nav>
+      <a href="/" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" fill="#fff" />
+            <path
+              d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              fill="none"
+            />
+          </svg>
+        </div>
+        <span class="logo-name">My<span>Guru</span> AI</span>
+      </a>
+      <a href="/login" class="nav-link">Already have account? Login →</a>
+    </nav>
+
+    <main>
+      <div class="card">
+        <div class="progress">
+          <div class="progress-dot active" id="dot-1"></div>
+          <div class="progress-dot" id="dot-2"></div>
+          <div class="progress-dot" id="dot-3"></div>
+        </div>
+
+        <!-- STEP 1: EXAM -->
+        <div class="step active" id="step-exam">
+          <div class="card-icon">🎯</div>
+          <h1 class="card-title">உங்கள் exam என்ன?</h1>
+          <p class="card-sub tamil">உங்கள் exam தேர்ந்தெடுங்க — அந்த exam மட்டும் pay பண்ணுங்க</p>
+          <div class="exam-grid">
+            <div class="exam-card" onclick="selectExam(event, 'TNPSC', 'tnpsc')">
+              <div class="exam-emoji">🏛️</div>
+              <div class="exam-name">TNPSC</div>
+              <div class="exam-price">₹79/month</div>
+              <div class="exam-check">✅ Selected</div>
+            </div>
+            <div class="exam-card" onclick="selectExam(event, 'NEET', 'neet')">
+              <div class="exam-emoji">🏥</div>
+              <div class="exam-name">NEET</div>
+              <div class="exam-price">₹129/month</div>
+              <div class="exam-check">✅ Selected</div>
+            </div>
+            <div class="exam-card" onclick="selectExam(event, 'JEE', 'jee')">
+              <div class="exam-emoji">⚙️</div>
+              <div class="exam-name">JEE</div>
+              <div class="exam-price">₹129/month</div>
+              <div class="exam-check">✅ Selected</div>
+            </div>
+            <div class="exam-card" onclick="selectExam(event, 'UPSC', 'upsc')">
+              <div class="exam-emoji">🎖️</div>
+              <div class="exam-name">UPSC</div>
+              <div class="exam-price">₹199/month</div>
+              <div class="exam-check">✅ Selected</div>
+            </div>
+            <div class="exam-card" onclick="selectExam(event, 'Bank PO', 'bank')">
+              <div class="exam-emoji">🏦</div>
+              <div class="exam-name">Bank PO</div>
+              <div class="exam-price">₹79/month</div>
+              <div class="exam-check">✅ Selected</div>
+            </div>
+            <div class="exam-card" onclick="selectExam(event, 'SSC', 'ssc')">
+              <div class="exam-emoji">🚂</div>
+              <div class="exam-name">SSC</div>
+              <div class="exam-price">₹79/month</div>
+              <div class="exam-check">✅ Selected</div>
+            </div>
+          </div>
+          <div class="free-badge tamil">✅ 10 questions/day free forever — No card needed</div>
+          <button class="btn btn-primary" onclick="goToEmail()">Continue →</button>
+        </div>
+
+        <!-- STEP 2: EMAIL -->
+        <div class="step" id="step-email">
+          <div class="card-icon">📧</div>
+          <h1 class="card-title">உங்கள் email கொடுங்க</h1>
+          <p class="card-sub tamil">OTP அனுப்புகிறோம் — card வேண்டாம்</p>
+          <div class="status-box" id="email-status"></div>
+          <div class="form-group">
+            <label for="name">உங்கள் பெயர்</label>
+            <input type="text" id="name" placeholder="உங்கள் பெயர்" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="your@gmail.com"
+              autocomplete="email"
+              inputmode="email"
+            />
+          </div>
+          <button class="btn btn-primary" id="send-otp-btn" onclick="sendOTP()">
+            OTP அனுப்புங்க →
+          </button>
+          <div class="login-row">Already have account? <a href="/login">Login பண்ணுங்க</a></div>
+        </div>
+
+        <!-- STEP 3: OTP -->
+        <div class="step" id="step-otp">
+          <div class="card-icon">🔐</div>
+          <h1 class="card-title">OTP Enter பண்ணுங்க</h1>
+          <p class="card-sub tamil" id="otp-sent-to">உங்கள் email-க்கு OTP அனுப்பினோம்</p>
+          <div class="status-box" id="otp-status"></div>
+          <div class="otp-grid">
+            <input
+              class="otp-input"
+              type="text"
+              maxlength="1"
+              inputmode="numeric"
+              id="otp-0"
+              onkeyup="otpKeyup(event, 0)"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              maxlength="1"
+              inputmode="numeric"
+              id="otp-1"
+              onkeyup="otpKeyup(event, 1)"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              maxlength="1"
+              inputmode="numeric"
+              id="otp-2"
+              onkeyup="otpKeyup(event, 2)"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              maxlength="1"
+              inputmode="numeric"
+              id="otp-3"
+              onkeyup="otpKeyup(event, 3)"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              maxlength="1"
+              inputmode="numeric"
+              id="otp-4"
+              onkeyup="otpKeyup(event, 4)"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              maxlength="1"
+              inputmode="numeric"
+              id="otp-5"
+              onkeyup="otpKeyup(event, 5)"
+            />
+          </div>
+          <button class="btn btn-primary" id="verify-btn" onclick="verifyOTP()">
+            Sign up பண்ணுங்க 🎉
+          </button>
+          <div class="login-row" style="margin-top: 1rem">
+            <a href="#" onclick="goToEmailStep()">← வேற email try பண்ணுங்க</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>© 2025 MyGuru AI · myguruai.in</footer>
+
+    <script>
+      // ── CONFIG — loaded from API ──
+      let SUPABASE_URL = ''
+      let SUPABASE_ANON_KEY = ''
+      const API_URL = 'http://localhost:3000'
+      let selectedExam = ''
+      let selectedPlan = ''
+      let currentEmail = ''
+
+      // ── LOAD CONFIG ──
+      async function loadConfig() {
+        try {
+          const res = await fetch(API_URL + '/api/config')
+          const config = await res.json()
+          SUPABASE_URL = config.supabase_url
+          SUPABASE_ANON_KEY = config.supabase_anon_key
+        } catch (err) {
+          console.error('Config load failed:', err)
+        }
+      }
+
+      // ── EXAM SELECTION ──
+      function selectExam(event, exam, plan) {
+        selectedExam = exam
+        selectedPlan = plan
+        document.querySelectorAll('.exam-card').forEach((c) => c.classList.remove('selected'))
+        event.currentTarget.classList.add('selected')
+      }
+
+      function goToEmail() {
+        if (!selectedExam) {
+          alert('உங்கள் exam தேர்ந்தெடுங்க!')
+          return
+        }
+        showStep('step-email')
+        updateProgress(2)
+      }
+
+      // ── SEND OTP ──
+      async function sendOTP() {
+        const email = document.getElementById('email').value.trim()
+        const name = document.getElementById('name').value.trim()
+        const btn = document.getElementById('send-otp-btn')
+
+        if (!email || !email.includes('@')) {
+          showStatus('email-status', 'சரியான email கொடுங்க', 'error')
+          return
+        }
+
+        btn.disabled = true
+        btn.innerHTML = '<span class="loader"></span>அனுப்புகிறோம்...'
+
+        try {
+          const res = await fetch(API_URL + '/api/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, name, plan_id: selectedPlan, preferred_lang: 'Tamil' }),
+          })
+
+          const data = await res.json()
+
+          if (data.success) {
+            currentEmail = email
+            document.getElementById('otp-sent-to').textContent = email + '-க்கு OTP அனுப்பினோம்'
+            showStep('step-otp')
+            updateProgress(3)
+            document.getElementById('otp-0').focus()
+          } else if (data.error === 'TRIAL_USED') {
+            showStatus(
+              'email-status',
+              'இந்த email-ல் ஏற்கனவே account இருக்கு. Login பண்ணுங்க.',
+              'error',
+            )
+          } else {
+            showStatus('email-status', data.message || 'Error. Try again.', 'error')
+          }
+        } catch (err) {
+          showStatus('email-status', 'Network error. Is server running?', 'error')
+        }
+
+        btn.disabled = false
+        btn.innerHTML = 'OTP அனுப்புங்க →'
+      }
+
+      // ── VERIFY OTP ──
+      async function verifyOTP() {
+        const otp = Array.from(
+          { length: 6 },
+          (_, i) => document.getElementById('otp-' + i).value,
+        ).join('')
+
+        if (otp.length !== 6) {
+          showStatus('otp-status', '6-digit OTP enter பண்ணுங்க', 'error')
+          return
+        }
+
+        const btn = document.getElementById('verify-btn')
+        btn.disabled = true
+        btn.innerHTML = '<span class="loader"></span>Verifying...'
+
+        try {
+          const res = await fetch(SUPABASE_URL + '/auth/v1/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY },
+            body: JSON.stringify({ email: currentEmail, token: otp, type: 'email' }),
+          })
+
+          const data = await res.json()
+
+          if (data.access_token) {
+            localStorage.setItem('mg_token', data.access_token)
+            localStorage.setItem('mg_refresh', data.refresh_token)
+            localStorage.setItem('mg_user', JSON.stringify(data.user))
+            localStorage.setItem('mg_exam', selectedExam)
+            localStorage.setItem('mg_plan', selectedPlan)
+            showStatus('otp-status', 'Account created! Welcome to MyGuru AI 🎉', 'success')
+            setTimeout(() => {
+              window.location.href = '/app'
+            }, 1500)
+          } else {
+            showStatus('otp-status', 'தவறான OTP. மீண்டும் try பண்ணுங்க.', 'error')
+          }
+        } catch (err) {
+          showStatus('otp-status', 'Network error. Please try again.', 'error')
+        }
+
+        btn.disabled = false
+        btn.innerHTML = 'Sign up பண்ணுங்க 🎉'
+      }
+
+      // ── OTP KEYBOARD ──
+      function otpKeyup(e, index) {
+        const input = document.getElementById('otp-' + index)
+        input.value = input.value.replace(/[^0-9]/g, '')
+        if (input.value && index < 5) document.getElementById('otp-' + (index + 1)).focus()
+        if (e.key === 'Backspace' && !input.value && index > 0)
+          document.getElementById('otp-' + (index - 1)).focus()
+        const otp = Array.from(
+          { length: 6 },
+          (_, i) => document.getElementById('otp-' + i).value,
+        ).join('')
+        if (otp.length === 6) verifyOTP()
+      }
+
+      // ── HELPERS ──
+      function showStep(id) {
+        document.querySelectorAll('.step').forEach((s) => s.classList.remove('active'))
+        document.getElementById(id).classList.add('active')
+      }
+
+      function updateProgress(step) {
+        document.querySelectorAll('.progress-dot').forEach((d, i) => {
+          d.classList.remove('active', 'done')
+          if (i + 1 < step) d.classList.add('done')
+          if (i + 1 === step) d.classList.add('active')
+        })
+      }
+
+      function showStatus(id, msg, type) {
+        const el = document.getElementById(id)
+        el.textContent = msg
+        el.className = 'status-box show ' + type
+      }
+
+      function goToEmailStep() {
+        showStep('step-email')
+        updateProgress(2)
+      }
+
+      // ── INIT ──
+      window.addEventListener('load', async () => {
+        await loadConfig()
+        document.getElementById('loading-screen').classList.add('hidden')
+        const token = localStorage.getItem('mg_token')
+        if (token) window.location.href = '/app'
+      })
+    </script>
+  </body>
+</html>
