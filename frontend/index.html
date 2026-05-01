@@ -1,0 +1,2507 @@
+<!doctype html>
+<html lang="ta">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="MyGuru AI — Tamil AI tutor for NEET JEE TNPSC UPSC Bank PO. Ask doubts in Tamil Hindi English. Pay only for your exam. No app download needed."
+    />
+    <meta name="theme-color" content="#0F2548" />
+    <meta property="og:title" content="MyGuru AI — உங்கள் doubt-க்கு உடனடி பதில்" />
+    <meta property="og:url" content="https://myguruai.in" />
+    <title>MyGuru AI — NEET · JEE · TNPSC · UPSC · Bank PO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+   RESET & CUSTOM PROPERTIES
+   ============================================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --navy: #0f2548;
+        --navy-mid: #163560;
+        --navy-light: #1e4a82;
+        --accent: #c8891a;
+        --accent-lt: #f5ead4;
+        --teal: #0a7c6a;
+        --teal-lt: #e2f5f1;
+        --crimson: #9b2335;
+        --indigo: #3b35a8;
+        --white: #ffffff;
+        --paper: #fafaf7;
+        --ink: #0c1421;
+        --muted: #5a6175;
+        --border: #e3e5ee;
+        --font-display: 'Playfair Display', Georgia, serif;
+        --font-body: 'Plus Jakarta Sans', sans-serif;
+        --font-tamil: 'Noto Sans Tamil', 'Plus Jakarta Sans', sans-serif;
+        --r-sm: 8px;
+        --r-md: 14px;
+        --r-lg: 20px;
+        --r-xl: 28px;
+        --r-2xl: 40px;
+        --shadow-sm: 0 1px 3px rgba(15, 37, 72, 0.08), 0 1px 2px rgba(15, 37, 72, 0.05);
+        --shadow-md: 0 4px 16px rgba(15, 37, 72, 0.1), 0 2px 6px rgba(15, 37, 72, 0.06);
+        --shadow-lg: 0 12px 40px rgba(15, 37, 72, 0.14), 0 4px 12px rgba(15, 37, 72, 0.08);
+        --shadow-xl: 0 24px 64px rgba(15, 37, 72, 0.18), 0 8px 24px rgba(15, 37, 72, 0.1);
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        --ease-out: cubic-bezier(0, 0, 0.2, 1);
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--ink);
+        background: var(--paper);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        cursor: pointer;
+        font-family: inherit;
+        border: none;
+      }
+      .tamil {
+        font-family: var(--font-tamil);
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* ── CONTAINER ── */
+      .container {
+        width: 100%;
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 1.25rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 1rem;
+        }
+      }
+
+      /* ── NAV ── */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        background: rgba(250, 250, 247, 0.93);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.25s var(--ease);
+      }
+      .nav.scrolled {
+        box-shadow: var(--shadow-sm);
+      }
+      .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        height: 68px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+      .logo__mark {
+        width: 40px;
+        height: 40px;
+        background: var(--navy);
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: transform 0.25s var(--ease);
+      }
+      .logo:hover .logo__mark {
+        transform: scale(1.05) rotate(-2deg);
+      }
+      .logo__mark svg {
+        width: 22px;
+        height: 22px;
+      }
+      .logo__name {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .logo__name span {
+        color: var(--accent);
+      }
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        list-style: none;
+      }
+      .nav__links a {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--muted);
+        transition: color 0.15s;
+        position: relative;
+        padding-bottom: 2px;
+      }
+      .nav__links a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--navy);
+        border-radius: 2px;
+        transition: width 0.25s var(--ease-out);
+      }
+      .nav__links a:hover {
+        color: var(--navy);
+      }
+      .nav__links a:hover::after {
+        width: 100%;
+      }
+      .nav__actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .btn-ghost {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--ink);
+        background: transparent;
+        border: 1.5px solid var(--border);
+        border-radius: 100px;
+        padding: 8px 20px;
+        transition: all 0.15s;
+        white-space: nowrap;
+        display: inline-block;
+      }
+      .btn-ghost:hover {
+        border-color: var(--navy);
+        color: var(--navy);
+        background: rgba(15, 37, 72, 0.05);
+      }
+      .btn-primary {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #fff;
+        background: var(--navy);
+        border-radius: 100px;
+        padding: 10px 22px;
+        transition: all 0.15s;
+        white-space: nowrap;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: var(--navy-mid);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(15, 37, 72, 0.25);
+      }
+      .nav__hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 0.5rem;
+        background: transparent;
+        border: none;
+      }
+      .nav__hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: all 0.25s var(--ease);
+      }
+      .nav__hamburger.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .nav__hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav__hamburger.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      .nav__mobile {
+        display: none;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 1rem 0;
+        border-top: 1px solid var(--border);
+      }
+      .nav__mobile a {
+        display: block;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--ink);
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.15s;
+      }
+      .nav__mobile a:hover {
+        color: var(--navy);
+      }
+      .nav__mobile a:last-of-type {
+        border-bottom: none;
+      }
+      .nav__mobile-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding-top: 1rem;
+      }
+      .nav__mobile-actions .btn-ghost,
+      .nav__mobile-actions .btn-primary {
+        text-align: center;
+        display: block;
+        padding: 14px;
+        border-radius: var(--r-md);
+      }
+      @media (max-width: 900px) {
+        .nav__links,
+        .nav__actions {
+          display: none;
+        }
+        .nav__hamburger {
+          display: flex;
+        }
+        .nav__mobile.open {
+          display: flex;
+        }
+      }
+
+      /* ── HERO ── */
+      .hero {
+        position: relative;
+        background: var(--white);
+        overflow: hidden;
+        padding: 5rem 0 4rem;
+      }
+      .hero__bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .hero__bg-dots {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(15, 37, 72, 0.07) 1px, transparent 1px);
+        background-size: 28px 28px;
+        mask-image: radial-gradient(ellipse 70% 80% at 50% 40%, rgba(0, 0, 0, 0.6), transparent);
+        -webkit-mask-image: radial-gradient(
+          ellipse 70% 80% at 50% 40%,
+          rgba(0, 0, 0, 0.6),
+          transparent
+        );
+      }
+      .hero__bg-glow-1 {
+        position: absolute;
+        top: -20%;
+        left: -10%;
+        width: 60%;
+        height: 80%;
+        background: radial-gradient(ellipse, rgba(30, 74, 130, 0.08) 0%, transparent 65%);
+      }
+      .hero__bg-glow-2 {
+        position: absolute;
+        top: -10%;
+        right: -5%;
+        width: 50%;
+        height: 70%;
+        background: radial-gradient(ellipse, rgba(200, 137, 26, 0.06) 0%, transparent 65%);
+      }
+      .hero__content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .hero__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(15, 37, 72, 0.06);
+        border: 1px solid rgba(15, 37, 72, 0.12);
+        border-radius: 100px;
+        padding: 6px 16px 6px 8px;
+        margin-bottom: 1.5rem;
+        animation: fadeUp 0.6s var(--ease-out) both;
+      }
+      .hero__eyebrow-dot {
+        width: 24px;
+        height: 24px;
+        background: var(--navy);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .hero__eyebrow-dot svg {
+        width: 12px;
+        height: 12px;
+      }
+      .hero__eyebrow-text {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: 0.04em;
+      }
+      .hero__h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 6vw, 4.8rem);
+        font-weight: 800;
+        color: var(--ink);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin-bottom: 1rem;
+        animation: fadeUp 0.6s 0.1s var(--ease-out) both;
+      }
+      .hero__h1 em {
+        font-style: italic;
+        color: var(--navy);
+      }
+      .hero__tagline {
+        font-family: var(--font-tamil);
+        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        color: var(--muted);
+        margin-bottom: 1.25rem;
+        animation: fadeUp 0.6s 0.15s var(--ease-out) both;
+      }
+      .hero__body {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        color: var(--muted);
+        max-width: 520px;
+        margin: 0 auto 2rem;
+        line-height: 1.75;
+        animation: fadeUp 0.6s 0.2s var(--ease-out) both;
+      }
+      .hero__body strong {
+        color: var(--teal);
+        font-weight: 600;
+      }
+      .hero__btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.5rem;
+        animation: fadeUp 0.6s 0.25s var(--ease-out) both;
+      }
+      .btn-hero {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 100px;
+        padding: 15px 32px;
+        transition: all 0.25s var(--ease);
+        white-space: nowrap;
+      }
+      .btn-hero--primary {
+        background: var(--navy);
+        color: #fff;
+        box-shadow: 0 2px 12px rgba(15, 37, 72, 0.25);
+      }
+      .btn-hero--primary:hover {
+        background: var(--navy-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(15, 37, 72, 0.3);
+      }
+      .btn-hero--secondary {
+        background: transparent;
+        color: var(--ink);
+        border: 2px solid var(--border);
+      }
+      .btn-hero--secondary:hover {
+        border-color: var(--navy);
+        background: rgba(15, 37, 72, 0.04);
+        color: var(--navy);
+      }
+      .hero__pills {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        animation: fadeUp 0.6s 0.3s var(--ease-out) both;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 100px;
+        padding: 7px 16px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--ink);
+        transition: all 0.15s;
+      }
+      .pill:hover {
+        border-color: var(--navy);
+        background: rgba(15, 37, 72, 0.04);
+        color: var(--navy);
+        transform: translateY(-1px);
+      }
+      .pill__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .hero__trust {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        animation: fadeUp 0.6s 0.35s var(--ease-out) both;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      .trust-item__dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* ── MARQUEE ── */
+      .marquee {
+        background: var(--navy);
+        padding: 14px 0;
+        overflow: hidden;
+        position: relative;
+      }
+      .marquee::before,
+      .marquee::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 80px;
+        z-index: 2;
+      }
+      .marquee::before {
+        left: 0;
+        background: linear-gradient(to right, var(--navy), transparent);
+      }
+      .marquee::after {
+        right: 0;
+        background: linear-gradient(to left, var(--navy), transparent);
+      }
+      .marquee__track {
+        display: flex;
+        gap: 48px;
+        width: max-content;
+        animation: marqueeScroll 28s linear infinite;
+      }
+      .marquee:hover .marquee__track {
+        animation-play-state: paused;
+      }
+      .marquee__item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.72);
+        white-space: nowrap;
+      }
+      .marquee__dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* ── STATS ── */
+      .stats {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 2.5rem 0;
+      }
+      .stats__grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2px;
+      }
+      @media (max-width: 900px) {
+        .stats__grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .stats__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .stat {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        border-radius: var(--r-md);
+        transition: background 0.25s;
+      }
+      .stat:hover {
+        background: rgba(15, 37, 72, 0.04);
+      }
+      .stat__num {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.03em;
+      }
+      .stat__label {
+        font-size: 0.8125rem;
+        color: var(--muted);
+        line-height: 1.45;
+        font-weight: 500;
+      }
+
+      /* ── SECTION COMMON ── */
+      .section {
+        padding: 5rem 0;
+      }
+      .section--alt {
+        background: var(--paper);
+      }
+      .section--dark {
+        background: var(--navy);
+      }
+      .section__label {
+        font-size: 0.6875rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.75rem;
+      }
+      .section__label--light {
+        color: rgba(200, 137, 26, 0.9);
+      }
+      .section__h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+        margin-bottom: 1rem;
+      }
+      .section__h2 em {
+        font-style: italic;
+        color: var(--navy);
+      }
+      .section__h2--light {
+        color: #fff;
+      }
+      .section__h2--light em {
+        color: var(--accent);
+      }
+      .section__body {
+        font-size: 1rem;
+        color: var(--muted);
+        max-width: 520px;
+        line-height: 1.75;
+        margin-bottom: 3rem;
+      }
+
+      /* ── EXAM SECTION ── */
+      .exam-intro {
+        padding: 4rem 0 2rem;
+        background: var(--paper);
+      }
+      .exams {
+        padding: 0 0 5rem;
+        background: var(--paper);
+      }
+      .exam-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      @media (max-width: 1000px) {
+        .exam-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .exam-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+      }
+      .exam-card {
+        border-radius: var(--r-xl);
+        overflow: hidden;
+        transition:
+          transform 0.25s var(--ease),
+          box-shadow 0.25s var(--ease);
+        cursor: pointer;
+      }
+      .exam-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-xl);
+      }
+      .exam-card:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+      }
+      .exam-card__inner {
+        padding: 2rem 1.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .exam-card--tnpsc {
+        background: linear-gradient(145deg, #0f2548 0%, #1a3f72 100%);
+        color: #fff;
+      }
+      .exam-card--neet {
+        background: linear-gradient(145deg, #7a1b2a 0%, #b02a40 100%);
+        color: #fff;
+      }
+      .exam-card--jee {
+        background: linear-gradient(145deg, #2c2990 0%, #4740cc 100%);
+        color: #fff;
+      }
+      .exam-card--upsc {
+        background: linear-gradient(145deg, #08554a 0%, #0d7a6a 100%);
+        color: #fff;
+      }
+      .exam-card--bank {
+        background: linear-gradient(145deg, #8a5c0a 0%, #c8891a 100%);
+        color: #fff;
+      }
+      .exam-card--ssc {
+        background: linear-gradient(145deg, #1c3052 0%, #2c4b7e 100%);
+        color: #fff;
+      }
+      .exam-card__tag {
+        font-size: 0.6875rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.65;
+        margin-bottom: 1.25rem;
+      }
+      .exam-card__emoji {
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+        line-height: 1;
+      }
+      .exam-card__name {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        margin-bottom: 0.25rem;
+      }
+      .exam-card__full {
+        font-size: 0.75rem;
+        opacity: 0.6;
+        margin-bottom: 1.25rem;
+      }
+      .exam-card__quote {
+        font-family: var(--font-tamil);
+        font-size: 0.9375rem;
+        line-height: 1.65;
+        font-style: italic;
+        opacity: 0.88;
+        margin-bottom: 0.5rem;
+        flex: 1;
+      }
+      .exam-card__quote-en {
+        font-size: 0.75rem;
+        opacity: 0.55;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+      }
+      .exam-card__topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+      }
+      .exam-card__topic {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .exam-card__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .exam-card__price {
+        font-family: var(--font-display);
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .exam-card__price-unit {
+        font-size: 0.6875rem;
+        opacity: 0.6;
+        margin-top: 3px;
+        font-family: var(--font-tamil);
+      }
+      .exam-card__btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #fff;
+        border-radius: 100px;
+        padding: 9px 20px;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        transition: all 0.15s;
+        font-family: var(--font-body);
+      }
+      .exam-card__btn:hover {
+        background: rgba(255, 255, 255, 0.32);
+      }
+
+      /* ── WHY CARDS ── */
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      @media (max-width: 900px) {
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .why-card {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: var(--r-lg);
+        padding: 1.5rem;
+        transition: all 0.25s var(--ease);
+      }
+      .why-card:hover {
+        border-color: var(--navy);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+      .why-card__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.375rem;
+        margin-bottom: 1rem;
+      }
+      .why-card__title {
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+        font-family: var(--font-tamil);
+      }
+      .why-card__desc {
+        font-size: 0.8125rem;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 1rem;
+      }
+      .why-card__them {
+        font-size: 0.75rem;
+        color: var(--crimson);
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border);
+        margin-bottom: 0.5rem;
+      }
+      .why-card__us {
+        font-size: 0.75rem;
+        color: var(--teal);
+        font-weight: 600;
+      }
+
+      /* ── DEMO ── */
+      .demo__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      @media (max-width: 768px) {
+        .demo__grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+      .lang-tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .lang-tab {
+        padding: 8px 18px;
+        border-radius: 100px;
+        border: 1.5px solid var(--border);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: var(--muted);
+        background: var(--white);
+        transition: all 0.15s;
+        cursor: pointer;
+      }
+      .lang-tab:hover {
+        border-color: var(--navy);
+        color: var(--navy);
+      }
+      .lang-tab.active {
+        background: var(--navy);
+        border-color: var(--navy);
+        color: #fff;
+      }
+      .chat-window {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: var(--r-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .chat-header {
+        background: var(--navy);
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .chat-header__av {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .chat-header__av svg {
+        width: 20px;
+        height: 20px;
+      }
+      .chat-header__name {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .chat-header__status {
+        font-size: 0.6875rem;
+        color: rgba(255, 255, 255, 0.65);
+        margin-top: 1px;
+      }
+      .chat-body {
+        padding: 1rem;
+        background: #f0f2f5;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .msg {
+        max-width: 88%;
+        font-size: 0.8125rem;
+        line-height: 1.65;
+        padding: 10px 14px;
+        font-family: var(--font-tamil);
+      }
+      .msg--student {
+        align-self: flex-end;
+        background: var(--navy);
+        color: #fff;
+        border-radius: 16px 16px 4px 16px;
+      }
+      .msg--ai {
+        align-self: flex-start;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 16px 16px 16px 4px;
+        color: var(--ink);
+        box-shadow: var(--shadow-sm);
+      }
+      .msg__time {
+        font-size: 0.6875rem;
+        color: #999;
+        margin-top: 4px;
+        text-align: right;
+      }
+
+      /* ── HOW ── */
+      .how-steps {
+        display: flex;
+        flex-direction: column;
+      }
+      .how-step {
+        display: flex;
+        gap: 1.25rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .how-step:last-child {
+        border-bottom: none;
+      }
+      .how-step__num {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--accent);
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+      .how-step__title {
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        font-family: var(--font-tamil);
+      }
+      .how-step__desc {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.58);
+        line-height: 1.65;
+      }
+      .how-step__badge {
+        display: inline-block;
+        margin-top: 0.75rem;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 100px;
+        background: rgba(200, 137, 26, 0.18);
+        color: var(--accent);
+        border: 1px solid rgba(200, 137, 26, 0.3);
+      }
+
+      /* ── FREE ── */
+      .free-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 2.5rem 0 1.5rem;
+      }
+      @media (max-width: 900px) {
+        .free-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .free-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .free-item {
+        background: #fff;
+        border: 1.5px solid var(--border);
+        border-radius: var(--r-lg);
+        padding: 1.25rem;
+        transition: all 0.25s var(--ease);
+      }
+      .free-item:hover {
+        border-color: var(--teal);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+      }
+      .free-item__icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .free-item__title {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+        font-family: var(--font-tamil);
+      }
+      .free-item__desc {
+        font-size: 0.8125rem;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .free-item__tag {
+        display: inline-block;
+        margin-top: 0.75rem;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 100px;
+        background: var(--teal-lt);
+        color: var(--teal);
+      }
+
+      /* ── CTA ── */
+      .cta {
+        padding: 5rem 0;
+        background: var(--white);
+      }
+      .cta__box {
+        background: var(--navy);
+        border-radius: var(--r-2xl);
+        padding: 4rem 3rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      @media (max-width: 600px) {
+        .cta__box {
+          padding: 2.5rem 1.5rem;
+          border-radius: var(--r-xl);
+        }
+      }
+      .cta__box::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 24px 24px;
+        pointer-events: none;
+      }
+      .cta__label {
+        font-size: 0.6875rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        position: relative;
+      }
+      .cta__h2 {
+        font-family: var(--font-tamil);
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.15;
+        margin-bottom: 1rem;
+        position: relative;
+      }
+      .cta__sub {
+        font-size: 0.9375rem;
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 440px;
+        margin: 0 auto 2rem;
+        line-height: 1.7;
+        position: relative;
+        font-family: var(--font-tamil);
+      }
+      .cta__form {
+        display: flex;
+        gap: 0.5rem;
+        max-width: 440px;
+        margin: 0 auto 1rem;
+        position: relative;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 480px) {
+        .cta__form {
+          flex-direction: column;
+        }
+      }
+      .cta__input {
+        flex: 1;
+        min-width: 200px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        border-radius: 100px;
+        padding: 14px 22px;
+        font-size: 0.9375rem;
+        color: #fff;
+        font-family: var(--font-body);
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .cta__input::placeholder {
+        color: rgba(255, 255, 255, 0.38);
+      }
+      .cta__input:focus {
+        border-color: var(--accent);
+      }
+      .cta__btn {
+        background: var(--accent);
+        color: #fff;
+        border-radius: 100px;
+        padding: 14px 28px;
+        font-size: 0.9375rem;
+        font-weight: 800;
+        font-family: var(--font-body);
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
+      .cta__btn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(200, 137, 26, 0.4);
+      }
+      .cta__fine {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.28);
+        margin-bottom: 1.5rem;
+        position: relative;
+        font-family: var(--font-tamil);
+      }
+      .cta__trust {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      .cta__trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .cta__trust-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      /* ── FOOTER ── */
+      .footer {
+        background: var(--ink);
+        padding: 2.5rem 0 0;
+      }
+      .footer__top {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      @media (max-width: 768px) {
+        .footer__top {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 480px) {
+        .footer__top {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+      }
+      .footer__brand .logo__name {
+        color: #fff;
+      }
+      .footer__brand .logo__name span {
+        color: var(--accent);
+      }
+      .footer__tagline {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.65;
+        margin-top: 0.75rem;
+        max-width: 240px;
+        font-family: var(--font-tamil);
+      }
+      .footer__heading {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 1rem;
+      }
+      .footer__links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        list-style: none;
+      }
+      .footer__links a {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.5);
+        transition: color 0.15s;
+      }
+      .footer__links a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .footer__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding: 1.25rem 0;
+      }
+      .footer__copy {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .footer__disclaimer {
+        font-size: 0.6875rem;
+        color: rgba(255, 255, 255, 0.18);
+        line-height: 1.65;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        text-align: center;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes marqueeScroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.6s var(--ease-out),
+          transform 0.6s var(--ease-out);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* ── MOBILE TWEAKS ── */
+      @media (max-width: 480px) {
+        .hero {
+          padding: 3rem 0 2.5rem;
+        }
+        .section {
+          padding: 3rem 0;
+        }
+        .hero__trust {
+          gap: 1rem;
+        }
+        .btn-hero {
+          padding: 13px 24px;
+          font-size: 0.9375rem;
+        }
+        .hero__btns {
+          gap: 0.5rem;
+        }
+      }
+
+      /* ── IPAD (768–1024) ── */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .exam-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .demo__grid {
+          gap: 2rem;
+        }
+      }
+
+      /* ── ACCESSIBILITY ── */
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: var(--r-sm);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <header role="banner">
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <div class="container">
+          <div class="nav__inner">
+            <a href="/" class="logo" aria-label="MyGuru AI home">
+              <div class="logo__mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="8" r="4" fill="#fff" />
+                  <path
+                    d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"
+                    stroke="#fff"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <path
+                    d="M18 10l3 1.5-3 1.5"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    fill="none"
+                    opacity="0.75"
+                  />
+                </svg>
+              </div>
+              <span class="logo__name">My<span>Guru</span> AI</span>
+            </a>
+            <ul class="nav__links" role="list">
+              <li><a href="#exams">Exams</a></li>
+              <li><a href="#why">Why MyGuru</a></li>
+              <li><a href="#demo">Demo</a></li>
+              <li><a href="#how">How it works</a></li>
+            </ul>
+            <div class="nav__actions">
+              <a href="#login" class="btn-ghost">Login</a>
+              <a href="#start" class="btn-primary tamil">Free-ஆ start பண்ணுங்க</a>
+            </div>
+            <button
+              class="nav__hamburger"
+              id="hamburger"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+            >
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+          <nav class="nav__mobile" id="mobile-menu" aria-label="Mobile navigation">
+            <a href="#exams">Exams</a>
+            <a href="#why">Why MyGuru</a>
+            <a href="#demo">Demo</a>
+            <a href="#how">How it works</a>
+            <div class="nav__mobile-actions">
+              <a href="#login" class="btn-ghost">Login</a>
+              <a href="#start" class="btn-primary tamil">Free-ஆ start பண்ணுங்க</a>
+            </div>
+          </nav>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero__bg" aria-hidden="true">
+          <div class="hero__bg-dots"></div>
+          <div class="hero__bg-glow-1"></div>
+          <div class="hero__bg-glow-2"></div>
+        </div>
+        <div class="container">
+          <div class="hero__content">
+            <div class="hero__eyebrow">
+              <div class="hero__eyebrow-dot" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M13 10V3L4 14h7v7l9-11h-7z" fill="#fff" />
+                </svg>
+              </div>
+              <span class="hero__eyebrow-text tamil"
+                >India's first Tamil AI exam tutor — free to start</span
+              >
+            </div>
+            <h1 class="hero__h1 tamil" id="hero-heading">
+              உங்கள் doubt-க்கு<br /><em>உடனடி பதில்</em>
+            </h1>
+            <p class="hero__tagline tamil">
+              உங்கள் exam மட்டும். உங்கள் மொழி மட்டும். உங்கள் விலை மட்டும்.
+            </p>
+            <p class="hero__body">
+              <strong>NEET, JEE, TNPSC, UPSC, Bank PO</strong> — ask any doubt in Tamil, Hindi or
+              English at 11pm or 2am. Get a clear AI answer instantly. Pay only for your exam.
+            </p>
+            <div class="hero__btns">
+              <a href="#exams" class="btn-hero btn-hero--primary tamil">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M5 12h14M12 5l7 7-7 7"
+                    stroke="#fff"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                உங்கள் exam தேர்ந்தெடுங்க
+              </a>
+              <a href="#demo" class="btn-hero btn-hero--secondary">See live demo</a>
+            </div>
+            <div class="hero__pills">
+              <span class="pill"
+                ><span class="pill__dot" style="background: #c8891a"></span>NEET 2025</span
+              >
+              <span class="pill"
+                ><span class="pill__dot" style="background: #0f2548"></span>JEE Main &amp;
+                Advanced</span
+              >
+              <span class="pill"
+                ><span class="pill__dot" style="background: #0a7c6a"></span>TNPSC Group 1–4</span
+              >
+              <span class="pill"
+                ><span class="pill__dot" style="background: #3b35a8"></span>UPSC CSE</span
+              >
+              <span class="pill"
+                ><span class="pill__dot" style="background: #9b2335"></span>Bank PO &amp; SBI</span
+              >
+              <span class="pill"
+                ><span class="pill__dot" style="background: #1c3052"></span>SSC &amp; Railway</span
+              >
+            </div>
+            <div class="hero__trust">
+              <div class="trust-item">
+                <div class="trust-item__dot"></div>
+                <span class="tamil">Tamil · Hindi · English</span>
+              </div>
+              <div class="trust-item">
+                <div class="trust-item__dot"></div>
+                24/7 instant answers
+              </div>
+              <div class="trust-item">
+                <div class="trust-item__dot"></div>
+                No app download
+              </div>
+              <div class="trust-item">
+                <div class="trust-item__dot"></div>
+                10 Q/day free forever
+              </div>
+              <div class="trust-item">
+                <div class="trust-item__dot"></div>
+                Pay only for your exam
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">NEET Biology Tamil-ல்</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            JEE Maths shortcuts
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">TNPSC GK Tamil-ல்</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            UPSC current affairs
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            Bank PO reasoning tricks
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">11pm-லும் answer கிடைக்கும்</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">Voice-ல் Tamil-ல் கேளுங்க</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">App download வேண்டாம்</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            Pay only for your exam
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            SSC &amp; Railway GK
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">NEET Biology Tamil-ல்</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            JEE Maths shortcuts
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">TNPSC GK Tamil-ல்</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            UPSC current affairs
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            Bank PO reasoning tricks
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">11pm-லும் answer கிடைக்கும்</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">Voice-ல் Tamil-ல் கேளுங்க</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            <span class="tamil">App download வேண்டாம்</span>
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            Pay only for your exam
+          </div>
+          <div class="marquee__item">
+            <div class="marquee__dot"></div>
+            SSC &amp; Railway GK
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <section class="stats">
+        <div class="container">
+          <div class="stats__grid">
+            <div class="stat reveal">
+              <div class="stat__num">3Cr+</div>
+              <div class="stat__label">Exam aspirants in India every year</div>
+            </div>
+            <div class="stat reveal reveal-delay-1">
+              <div class="stat__num">24/7</div>
+              <div class="stat__label">AI tutor — never sleeps, never tires</div>
+            </div>
+            <div class="stat reveal reveal-delay-2">
+              <div class="stat__num">3</div>
+              <div class="stat__label">Languages — Tamil, Hindi, English</div>
+            </div>
+            <div class="stat reveal reveal-delay-3">
+              <div class="stat__num">6</div>
+              <div class="stat__label">Major competitive exams covered</div>
+            </div>
+            <div class="stat reveal reveal-delay-4">
+              <div class="stat__num">₹79</div>
+              <div class="stat__label">Starting price — less than ₹3 per day</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXAM INTRO -->
+      <section class="exam-intro" id="exams">
+        <div class="container">
+          <div class="section__label reveal tamil">உங்கள் exam தேர்ந்தெடுங்க</div>
+          <h2 class="section__h2 tamil reveal reveal-delay-1">
+            ஒவ்வொரு student-க்கும்<br />ஒரு <em>தனி Guru</em>
+          </h2>
+          <p class="section__body reveal reveal-delay-2">
+            Choose your exam. Pay only for that. No bundles, no wasted money. Your exam. Your price.
+            Your personal AI tutor.
+          </p>
+        </div>
+      </section>
+
+      <!-- EXAM CARDS -->
+      <section class="exams">
+        <div class="container">
+          <div class="exam-grid">
+            <article
+              class="exam-card exam-card--tnpsc reveal"
+              tabindex="0"
+              role="button"
+              onclick="location = '#start'"
+            >
+              <div class="exam-card__inner">
+                <span class="exam-card__tag">Tamil Nadu Govt Jobs</span>
+                <span class="exam-card__emoji">🏛️</span>
+                <h3 class="exam-card__name">TNPSC</h3>
+                <p class="exam-card__full">Group 1 · Group 2 · Group 4</p>
+                <p class="exam-card__quote tamil">
+                  "அரசு வேலை கிடைக்கும் — அந்த ஒரு நம்பிக்கையே போதும்."
+                </p>
+                <p class="exam-card__quote-en">
+                  "A government job will come — that one hope is enough."
+                </p>
+                <div class="exam-card__topics">
+                  <span class="exam-card__topic tamil">தமிழ் GK</span
+                  ><span class="exam-card__topic">Polity</span
+                  ><span class="exam-card__topic">History</span
+                  ><span class="exam-card__topic">Aptitude</span>
+                </div>
+                <div class="exam-card__footer">
+                  <div>
+                    <div class="exam-card__price">
+                      ₹79<span style="font-size: 0.875rem; opacity: 0.6">/mo</span>
+                    </div>
+                    <div class="exam-card__price-unit tamil">TNPSC மட்டும் — வேற எதுவும் இல்ல</div>
+                  </div>
+                  <button class="exam-card__btn">Start free →</button>
+                </div>
+              </div>
+            </article>
+            <article
+              class="exam-card exam-card--neet reveal reveal-delay-1"
+              tabindex="0"
+              role="button"
+              onclick="location = '#start'"
+            >
+              <div class="exam-card__inner">
+                <span class="exam-card__tag">Medical Entrance</span>
+                <span class="exam-card__emoji">🏥</span>
+                <h3 class="exam-card__name">NEET</h3>
+                <p class="exam-card__full">MBBS · BDS · AIIMS</p>
+                <p class="exam-card__quote tamil">
+                  "Doctor ஆவது என் கனவு — ஒரு doubt என்னை தடுக்காது."
+                </p>
+                <p class="exam-card__quote-en">
+                  "Becoming a doctor is my dream — one doubt will not stop me."
+                </p>
+                <div class="exam-card__topics">
+                  <span class="exam-card__topic">Biology</span
+                  ><span class="exam-card__topic">Physics</span
+                  ><span class="exam-card__topic">Chemistry</span
+                  ><span class="exam-card__topic">NCERT</span>
+                </div>
+                <div class="exam-card__footer">
+                  <div>
+                    <div class="exam-card__price">
+                      ₹129<span style="font-size: 0.875rem; opacity: 0.6">/mo</span>
+                    </div>
+                    <div class="exam-card__price-unit tamil">NEET மட்டும் — வேற எதுவும் இல்ல</div>
+                  </div>
+                  <button class="exam-card__btn">Start free →</button>
+                </div>
+              </div>
+            </article>
+            <article
+              class="exam-card exam-card--jee reveal reveal-delay-2"
+              tabindex="0"
+              role="button"
+              onclick="location = '#start'"
+            >
+              <div class="exam-card__inner">
+                <span class="exam-card__tag">Engineering Entrance</span>
+                <span class="exam-card__emoji">⚙️</span>
+                <h3 class="exam-card__name">JEE</h3>
+                <p class="exam-card__full">Main · Advanced · IIT</p>
+                <p class="exam-card__quote tamil">"IIT என் இலக்கு — கணிதம் என்னை தோற்கடிக்காது."</p>
+                <p class="exam-card__quote-en">
+                  "IIT is my target — mathematics will not defeat me."
+                </p>
+                <div class="exam-card__topics">
+                  <span class="exam-card__topic">Maths</span
+                  ><span class="exam-card__topic">Physics</span
+                  ><span class="exam-card__topic">Chemistry</span
+                  ><span class="exam-card__topic">Step-by-step</span>
+                </div>
+                <div class="exam-card__footer">
+                  <div>
+                    <div class="exam-card__price">
+                      ₹129<span style="font-size: 0.875rem; opacity: 0.6">/mo</span>
+                    </div>
+                    <div class="exam-card__price-unit tamil">JEE மட்டும் — வேற எதுவும் இல்ல</div>
+                  </div>
+                  <button class="exam-card__btn">Start free →</button>
+                </div>
+              </div>
+            </article>
+            <article
+              class="exam-card exam-card--upsc reveal reveal-delay-3"
+              tabindex="0"
+              role="button"
+              onclick="location = '#start'"
+            >
+              <div class="exam-card__inner">
+                <span class="exam-card__tag">Civil Services</span>
+                <span class="exam-card__emoji">🎖️</span>
+                <h3 class="exam-card__name">UPSC</h3>
+                <p class="exam-card__full">IAS · IPS · IFS · CSE</p>
+                <p class="exam-card__quote tamil">
+                  "IAS ஆவது என் அம்மாவின் கனவு — அதை நான் நிறைவேற்றுவேன்."
+                </p>
+                <p class="exam-card__quote-en">
+                  "Becoming IAS is my mother's dream — I will fulfil it."
+                </p>
+                <div class="exam-card__topics">
+                  <span class="exam-card__topic">GS 1–4</span
+                  ><span class="exam-card__topic">Essay</span
+                  ><span class="exam-card__topic">Current Affairs</span>
+                </div>
+                <div class="exam-card__footer">
+                  <div>
+                    <div class="exam-card__price">
+                      ₹199<span style="font-size: 0.875rem; opacity: 0.6">/mo</span>
+                    </div>
+                    <div class="exam-card__price-unit tamil">UPSC மட்டும் — வேற எதுவும் இல்ல</div>
+                  </div>
+                  <button class="exam-card__btn">Start free →</button>
+                </div>
+              </div>
+            </article>
+            <article
+              class="exam-card exam-card--bank reveal reveal-delay-4"
+              tabindex="0"
+              role="button"
+              onclick="location = '#start'"
+            >
+              <div class="exam-card__inner">
+                <span class="exam-card__tag">Banking Exams</span>
+                <span class="exam-card__emoji">🏦</span>
+                <h3 class="exam-card__name">Bank PO</h3>
+                <p class="exam-card__full">SBI · IBPS · RBI</p>
+                <p class="exam-card__quote tamil">
+                  "Bank job கிடைத்தால் என் family-க்கு நல்ல வாழ்க்கை கொடுப்பேன்."
+                </p>
+                <p class="exam-card__quote-en">"A bank job will give my family a good life."</p>
+                <div class="exam-card__topics">
+                  <span class="exam-card__topic">Reasoning</span
+                  ><span class="exam-card__topic">Aptitude</span
+                  ><span class="exam-card__topic">English</span
+                  ><span class="exam-card__topic">GK</span>
+                </div>
+                <div class="exam-card__footer">
+                  <div>
+                    <div class="exam-card__price">
+                      ₹79<span style="font-size: 0.875rem; opacity: 0.6">/mo</span>
+                    </div>
+                    <div class="exam-card__price-unit tamil">
+                      Bank PO மட்டும் — வேற எதுவும் இல்ல
+                    </div>
+                  </div>
+                  <button class="exam-card__btn">Start free →</button>
+                </div>
+              </div>
+            </article>
+            <article
+              class="exam-card exam-card--ssc reveal reveal-delay-4"
+              tabindex="0"
+              role="button"
+              onclick="location = '#start'"
+            >
+              <div class="exam-card__inner">
+                <span class="exam-card__tag">Central Govt Jobs</span>
+                <span class="exam-card__emoji">🚂</span>
+                <h3 class="exam-card__name">SSC / Railway</h3>
+                <p class="exam-card__full">CGL · CHSL · NTPC · Group D</p>
+                <p class="exam-card__quote tamil">
+                  "Central government job — என் ஊரில் முதல் ஆளாக நான் இருப்பேன்."
+                </p>
+                <p class="exam-card__quote-en">
+                  "Central govt job — I will be the first in my village."
+                </p>
+                <div class="exam-card__topics">
+                  <span class="exam-card__topic">GK</span><span class="exam-card__topic">Maths</span
+                  ><span class="exam-card__topic">Reasoning</span
+                  ><span class="exam-card__topic">English</span>
+                </div>
+                <div class="exam-card__footer">
+                  <div>
+                    <div class="exam-card__price">
+                      ₹79<span style="font-size: 0.875rem; opacity: 0.6">/mo</span>
+                    </div>
+                    <div class="exam-card__price-unit tamil">SSC மட்டும் — வேற எதுவும் இல்ல</div>
+                  </div>
+                  <button class="exam-card__btn">Start free →</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY -->
+      <section class="section" id="why">
+        <div class="container">
+          <div class="section__label reveal">Why MyGuru AI</div>
+          <h2 class="section__h2 reveal reveal-delay-1">
+            Others give content.<br /><em>We answer your doubt.</em>
+          </h2>
+          <p class="section__body reveal reveal-delay-2">
+            Every other platform gives the same content to everyone. MyGuru AI answers YOUR specific
+            doubt — in YOUR language — for YOUR exam.
+          </p>
+          <div class="why-grid">
+            <div class="why-card reveal">
+              <div class="why-card__icon" style="background: rgba(15, 37, 72, 0.08)">🌙</div>
+              <h3 class="why-card__title tamil">11pm-ல் doubt வந்தாலும்</h3>
+              <p class="why-card__desc">
+                Your teacher is asleep. Your friend doesn't know. MyGuru AI is awake 24/7 and
+                answers in seconds — not tomorrow morning.
+              </p>
+              <p class="why-card__them">❌ Coaching: wait until tomorrow's class</p>
+              <p class="why-card__us">✅ MyGuru AI: answer in under 5 seconds</p>
+            </div>
+            <div class="why-card reveal reveal-delay-1">
+              <div class="why-card__icon" style="background: rgba(200, 137, 26, 0.1)">🗣️</div>
+              <h3 class="why-card__title tamil">Tamil-ல் கேளுங்க — Tamil-ல் பதில்</h3>
+              <p class="why-card__desc">
+                You think in Tamil. You feel in Tamil. So your AI tutor explains in Tamil — with
+                Tamil examples, Tamil logic, Tamil analogies.
+              </p>
+              <p class="why-card__them">❌ Others: English translation feels foreign</p>
+              <p class="why-card__us">✅ MyGuru AI: thinks in Tamil like you do</p>
+            </div>
+            <div class="why-card reveal reveal-delay-2">
+              <div class="why-card__icon" style="background: rgba(10, 124, 106, 0.1)">💰</div>
+              <h3 class="why-card__title">Pay only for your exam</h3>
+              <p class="why-card__desc">
+                TNPSC student pays ₹79. Not ₹299 for a bundle with NEET content they will never use.
+                Only pay for what you actually need.
+              </p>
+              <p class="why-card__them">❌ Others: expensive bundles you skip</p>
+              <p class="why-card__us">✅ MyGuru AI: your exam only — ₹79 to ₹199</p>
+            </div>
+            <div class="why-card reveal reveal-delay-3">
+              <div class="why-card__icon" style="background: rgba(15, 37, 72, 0.08)">📱</div>
+              <h3 class="why-card__title">No app download needed</h3>
+              <p class="why-card__desc">
+                Open Chrome on any phone or laptop. Type your doubt. Get answer. No Play Store, no
+                200MB download, no account needed to try.
+              </p>
+              <p class="why-card__them">❌ Others: download app, slow setup</p>
+              <p class="why-card__us">✅ MyGuru AI: open browser, ask, done</p>
+            </div>
+            <div class="why-card reveal reveal-delay-4">
+              <div class="why-card__icon" style="background: rgba(200, 137, 26, 0.1)">🎙️</div>
+              <h3 class="why-card__title tamil">Voice-ல் கேளுங்க</h3>
+              <p class="why-card__desc">
+                Speak your doubt in Tamil or Hindi. MyGuru AI hears, understands, and answers. No
+                typing complex words — just speak naturally.
+              </p>
+              <p class="why-card__them">❌ Others: type everything on a tiny keyboard</p>
+              <p class="why-card__us">✅ MyGuru AI: speak in Tamil → instant answer</p>
+            </div>
+            <div class="why-card reveal reveal-delay-4">
+              <div class="why-card__icon" style="background: rgba(10, 124, 106, 0.1)">🎯</div>
+              <h3 class="why-card__title">Answers YOUR specific doubt</h3>
+              <p class="why-card__desc">
+                YouTube gives the same video to 10 million students. MyGuru AI answers exactly what
+                YOU are confused about — specific, personal, immediate.
+              </p>
+              <p class="why-card__them">❌ Others: generic explanation for everyone</p>
+              <p class="why-card__us">✅ MyGuru AI: your exact confusion, answered</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEMO -->
+      <section class="section section--alt" id="demo">
+        <div class="container">
+          <div class="demo__grid">
+            <div>
+              <div class="section__label reveal">Live demo</div>
+              <h2 class="section__h2 reveal reveal-delay-1">
+                Real answers.<br /><em>In your language.</em>
+              </h2>
+              <p
+                style="
+                  font-size: 0.9375rem;
+                  color: var(--muted);
+                  line-height: 1.75;
+                  margin-bottom: 1.5rem;
+                "
+                class="reveal reveal-delay-2"
+              >
+                Click Tamil, Hindi or English. See exactly how MyGuru AI explains — clear,
+                exam-focused, instantly. Available at 2am, 4am, any time you study.
+              </p>
+              <div class="lang-tabs reveal reveal-delay-3" role="tablist">
+                <button
+                  class="lang-tab active"
+                  role="tab"
+                  aria-selected="true"
+                  onclick="showDemo('tamil', this)"
+                >
+                  Tamil
+                </button>
+                <button
+                  class="lang-tab"
+                  role="tab"
+                  aria-selected="false"
+                  onclick="showDemo('hindi', this)"
+                >
+                  Hindi
+                </button>
+                <button
+                  class="lang-tab"
+                  role="tab"
+                  aria-selected="false"
+                  onclick="showDemo('english', this)"
+                >
+                  English
+                </button>
+              </div>
+            </div>
+            <div class="chat-window reveal reveal-delay-2">
+              <div class="chat-header">
+                <div class="chat-header__av">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="8" r="4" fill="#fff" />
+                    <path
+                      d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"
+                      stroke="#fff"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="chat-header__name">MyGuru AI</div>
+                  <div class="chat-header__status" id="demo-status">
+                    NEET Biology · Tamil-ல் பதில்
+                  </div>
+                </div>
+              </div>
+              <div class="chat-body" id="demo-msgs">
+                <div class="msg msg--student tamil">
+                  DNA replication-ல் leading strand மட்டும் continuous-ஆ synthesize ஆவது ஏன்? 🤔
+                </div>
+                <div class="msg msg--ai tamil">
+                  DNA Replication-ல் leading strand continuous-ஆ synthesize ஆவதற்கு காரணம்:<br /><br />🔬
+                  <strong>DNA Polymerase எப்போதும் 5'→3' direction-ல் மட்டுமே</strong> DNA
+                  synthesize செய்யும்.<br /><br />✅ <strong>Leading strand:</strong> Replication
+                  fork திறக்கும் direction-லேயே செல்வதால் — continuous-ஆ synthesize ஆகும்.<br /><br />❌
+                  <strong>Lagging strand:</strong> Opposite direction-ல் செல்வதால் — Okazaki
+                  fragments-ஆக discontinuous-ஆ synthesize ஆகும்.<br /><br />NEET-ல் இது அடிக்கடி
+                  கேட்கப்படும்! 💪
+                </div>
+                <div class="msg__time">MyGuru AI · NEET Biology ✓✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW -->
+      <section class="section section--dark" id="how">
+        <div class="container" style="max-width: 700px; margin: 0 auto">
+          <div class="section__label section__label--light reveal">Getting started</div>
+          <h2 class="section__h2 section__h2--light tamil reveal reveal-delay-1">
+            <em>2 நிமிடத்தில்</em> ready.<br />இன்றே படிக்க ஆரம்பிங்க.
+          </h2>
+          <div class="how-steps">
+            <div class="how-step reveal">
+              <div class="how-step__num">1</div>
+              <div>
+                <h3 class="how-step__title tamil">உங்கள் exam தேர்ந்தெடுங்க</h3>
+                <p class="how-step__desc">
+                  TNPSC, NEET, JEE, UPSC, Bank PO or SSC — click your exam above. You pay only for
+                  that exam. Nothing else included or charged.
+                </p>
+                <span class="how-step__badge tamil">6 exams — ₹79 முதல் ₹199 வரை</span>
+              </div>
+            </div>
+            <div class="how-step reveal reveal-delay-1">
+              <div class="how-step__num">2</div>
+              <div>
+                <h3 class="how-step__title tamil">Email-ல் free-ஆ sign up பண்ணுங்க</h3>
+                <p class="how-step__desc">
+                  No credit card. No payment. Just your email and OTP. 10 free questions every day —
+                  forever. No time limit on the free tier.
+                </p>
+                <span class="how-step__badge tamil">Free — எந்த card-உம் வேண்டாம்</span>
+              </div>
+            </div>
+            <div class="how-step reveal reveal-delay-2">
+              <div class="how-step__num">3</div>
+              <div>
+                <h3 class="how-step__title tamil">உங்கள் முதல் doubt கேளுங்க</h3>
+                <p class="how-step__desc">
+                  Type or speak in Tamil, Hindi or English. Get a clear exam-focused answer in
+                  seconds. Try the topic you have been struggling with for weeks.
+                </p>
+                <span class="how-step__badge tamil">Voice + text — எந்த மொழியிலும்</span>
+              </div>
+            </div>
+            <div class="how-step reveal reveal-delay-3">
+              <div class="how-step__num">4</div>
+              <div>
+                <h3 class="how-step__title tamil">Exam நெருங்கும்போது upgrade பண்ணுங்க</h3>
+                <p class="how-step__desc">
+                  When your exam is near — upgrade for mock tests, PYQ bank and personalised study
+                  plan. Pay only for the exam you need. Cancel anytime.
+                </p>
+                <span class="how-step__badge tamil">Exam month pass — ₹59 மட்டுமே</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FREE -->
+      <section class="section">
+        <div class="container" style="text-align: center">
+          <div class="section__label reveal tamil">Free forever</div>
+          <h2
+            class="section__h2 tamil reveal reveal-delay-1"
+            style="max-width: 600px; margin: 0 auto 0.75rem"
+          >
+            இவை எல்லாம் <em>எப்போதும் free</em>
+          </h2>
+          <p
+            style="
+              font-size: 1rem;
+              color: var(--muted);
+              max-width: 480px;
+              margin: 0 auto;
+              line-height: 1.75;
+            "
+            class="reveal reveal-delay-2"
+          >
+            We give 10 free questions every day — enough to solve real doubts. No tricks. No sudden
+            paywall.
+          </p>
+          <div class="free-grid">
+            <div class="free-item reveal">
+              <div class="free-item__icon">💬</div>
+              <h3 class="free-item__title tamil">10 doubts/day</h3>
+              <p class="free-item__desc">
+                Ask 10 questions every day free forever. Resets at midnight automatically.
+              </p>
+              <span class="free-item__tag">Free forever</span>
+            </div>
+            <div class="free-item reveal reveal-delay-1">
+              <div class="free-item__icon">🗣️</div>
+              <h3 class="free-item__title">Tamil + Hindi + English</h3>
+              <p class="free-item__desc">
+                All 3 languages free. Ask in Tamil, get Tamil answer. Always.
+              </p>
+              <span class="free-item__tag">Free forever</span>
+            </div>
+            <div class="free-item reveal reveal-delay-2">
+              <div class="free-item__icon">🎙️</div>
+              <h3 class="free-item__title">Voice input</h3>
+              <p class="free-item__desc">
+                Speak your doubt in Tamil or Hindi. No typing needed — ever.
+              </p>
+              <span class="free-item__tag">Free forever</span>
+            </div>
+            <div class="free-item reveal reveal-delay-3">
+              <div class="free-item__icon">📖</div>
+              <h3 class="free-item__title">Chapter summaries</h3>
+              <p class="free-item__desc">
+                Any NCERT chapter or TNPSC topic — clear Tamil summary instantly.
+              </p>
+              <span class="free-item__tag">Free forever</span>
+            </div>
+            <div class="free-item reveal reveal-delay-4">
+              <div class="free-item__icon">❓</div>
+              <h3 class="free-item__title">5 MCQs per day</h3>
+              <p class="free-item__desc">
+                Practice 5 MCQ questions daily with AI explanation for each option.
+              </p>
+              <span class="free-item__tag">Free forever</span>
+            </div>
+            <div class="free-item reveal reveal-delay-4">
+              <div class="free-item__icon">📱</div>
+              <h3 class="free-item__title">No app download</h3>
+              <p class="free-item__desc">
+                Open Chrome anywhere. Ask. Done. Works on any device, always free.
+              </p>
+              <span class="free-item__tag">Free forever</span>
+            </div>
+          </div>
+          <div
+            style="
+              background: var(--paper);
+              border: 1.5px solid var(--border);
+              border-radius: var(--r-lg);
+              padding: 1.25rem 1.5rem;
+              display: inline-block;
+              text-align: left;
+              max-width: 560px;
+              width: 100%;
+              margin-top: 1rem;
+            "
+            class="reveal"
+          >
+            <p
+              style="
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: var(--ink);
+                margin-bottom: 0.75rem;
+              "
+            >
+              Upgrade when you need more — your exam only:
+            </p>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                font-size: 0.875rem;
+                color: var(--muted);
+              "
+            >
+              <span>🏛️ TNPSC — <strong style="color: var(--navy)">₹79/mo</strong></span>
+              <span>🏥 NEET — <strong style="color: var(--navy)">₹129/mo</strong></span>
+              <span>⚙️ JEE — <strong style="color: var(--navy)">₹129/mo</strong></span>
+              <span>🎖️ UPSC — <strong style="color: var(--navy)">₹199/mo</strong></span>
+              <span>🏦 Bank PO — <strong style="color: var(--navy)">₹79/mo</strong></span>
+              <span>🚂 SSC — <strong style="color: var(--navy)">₹79/mo</strong></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta" id="start">
+        <div class="container">
+          <div class="cta__box reveal">
+            <p class="cta__label">இன்றே ஆரம்பிங்க — free</p>
+            <h2 class="cta__h2">
+              உங்கள் exam நெருங்குகிறது.<br />இன்றே ஒரு doubt தீர்த்துக்கோங்க.
+            </h2>
+            <p class="cta__sub">Email மட்டும் போதும். Card வேண்டாம். 30 seconds-ல் ready.</p>
+            <form class="cta__form" onsubmit="handleSignup(event)" novalidate>
+              <label for="signup-email" class="sr-only">Your email address</label>
+              <input
+                class="cta__input"
+                type="email"
+                id="signup-email"
+                placeholder="உங்கள் email address"
+                required
+                autocomplete="email"
+                inputmode="email"
+              />
+              <button type="submit" class="cta__btn">Free-ஆ start →</button>
+            </form>
+            <p class="cta__fine tamil">
+              Card வேண்டாம் · App download வேண்டாம் · எந்த நேரமும் cancel பண்ணலாம்
+            </p>
+            <div class="cta__trust">
+              <div class="cta__trust-item">
+                <div class="cta__trust-dot"></div>
+                NEET &amp; JEE
+              </div>
+              <div class="cta__trust-item">
+                <div class="cta__trust-dot"></div>
+                TNPSC &amp; UPSC
+              </div>
+              <div class="cta__trust-item">
+                <div class="cta__trust-dot"></div>
+                Bank &amp; SSC
+              </div>
+              <div class="cta__trust-item">
+                <div class="cta__trust-dot"></div>
+                Tamil · Hindi · English
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <div class="logo">
+              <div class="logo__mark">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="8" r="4" fill="#fff" />
+                  <path
+                    d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"
+                    stroke="#fff"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <path
+                    d="M18 10l3 1.5-3 1.5"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    fill="none"
+                    opacity="0.75"
+                  />
+                </svg>
+              </div>
+              <span class="logo__name">My<span>Guru</span> AI</span>
+            </div>
+            <p class="footer__tagline tamil">உங்கள் doubt-க்கு உடனடி பதில் — 24/7, Tamil-ல்.</p>
+          </div>
+          <nav aria-label="Exams">
+            <h3 class="footer__heading">Exams</h3>
+            <ul class="footer__links">
+              <li><a href="#exams">TNPSC — ₹79/mo</a></li>
+              <li><a href="#exams">NEET — ₹129/mo</a></li>
+              <li><a href="#exams">JEE — ₹129/mo</a></li>
+              <li><a href="#exams">UPSC — ₹199/mo</a></li>
+              <li><a href="#exams">Bank PO — ₹79/mo</a></li>
+              <li><a href="#exams">SSC — ₹79/mo</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Legal">
+            <h3 class="footer__heading">Legal</h3>
+            <ul class="footer__links">
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms &amp; Conditions</a></li>
+              <li><a href="/refund">Refund Policy</a></li>
+              <li><a href="mailto:contact@myguruai.in">contact@myguruai.in</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copy">© 2025 MyGuru AI · myguruai.in</p>
+          <p class="footer__copy">Made with ❤️ in Tamil Nadu</p>
+        </div>
+        <p class="footer__disclaimer">
+          MyGuru AI is an independent AI-powered study assistance platform. Not affiliated with NTA,
+          UPSC, TNPSC, SSC or any government body. Does not guarantee exam success or specific
+          ranks. Results vary based on individual effort and preparation.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      /* ── NAV ── */
+      const nav = document.getElementById('main-nav')
+      const hamburger = document.getElementById('hamburger')
+      const mobileMenu = document.getElementById('mobile-menu')
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          nav.classList.toggle('scrolled', window.scrollY > 10)
+        },
+        { passive: true },
+      )
+
+      hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open')
+        hamburger.setAttribute('aria-expanded', open)
+        mobileMenu.classList.toggle('open', open)
+      })
+
+      mobileMenu.querySelectorAll('a').forEach((a) => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open')
+          hamburger.setAttribute('aria-expanded', 'false')
+          mobileMenu.classList.remove('open')
+        })
+      })
+
+      /* ── SMOOTH SCROLL ── */
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const target = document.querySelector(a.getAttribute('href'))
+          if (!target) return
+          e.preventDefault()
+          const top = target.getBoundingClientRect().top + window.scrollY - 72
+          window.scrollTo({ top, behavior: 'smooth' })
+        })
+      })
+
+      /* ── SCROLL REVEAL ── */
+      const revealObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((el) => {
+            if (el.isIntersecting) {
+              el.target.classList.add('visible')
+              revealObs.unobserve(el.target)
+            }
+          })
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+      )
+
+      document.querySelectorAll('.reveal').forEach((el) => revealObs.observe(el))
+
+      /* ── DEMO ── */
+      const demos = {
+        tamil: {
+          status: 'NEET Biology · Tamil-ல் பதில்',
+          q: 'DNA replication-ல் leading strand மட்டும் continuous-ஆ synthesize ஆவது ஏன்? 🤔',
+          a: "DNA Replication-ல் leading strand continuous-ஆ synthesize ஆவதற்கு காரணம்:<br><br>🔬 <strong>DNA Polymerase எப்போதும் 5'→3' direction-ல் மட்டுமே</strong> DNA synthesize செய்யும்.<br><br>✅ <strong>Leading strand:</strong> Replication fork திறக்கும் direction-லேயே செல்வதால் — continuous-ஆ synthesize ஆகும்.<br><br>❌ <strong>Lagging strand:</strong> Opposite direction-ல் செல்வதால் — Okazaki fragments-ஆக discontinuous-ஆ synthesize ஆகும்.<br><br>NEET-ல் இது அடிக்கடி கேட்கப்படும்! 💪",
+          time: 'MyGuru AI · NEET Biology ✓✓',
+        },
+        hindi: {
+          status: 'JEE Physics · Hindi में जवाब',
+          q: 'Newton के गति के तीसरे नियम को example के साथ समझाओ 🤔',
+          a: 'Newton का तीसरा नियम: <strong>"हर action के लिए equal और opposite reaction होता है"</strong><br><br>🚀 <strong>Example 1 — Rocket:</strong> Rocket नीचे gas छोड़ता है (action) → Rocket ऊपर जाता है (reaction)<br><br>🏊 <strong>Example 2 — Swimming:</strong> पानी को पीछे धकेलते हैं → पानी आपको आगे धकेलता है<br><br>💡 <strong>JEE key point:</strong> दोनों forces equal magnitude — लेकिन different objects पर! इसलिए cancel नहीं होते।<br><br>मेहनत करते रहो! 🔥',
+          time: 'MyGuru AI · JEE Physics ✓✓',
+        },
+        english: {
+          status: 'UPSC GS · English answer',
+          q: 'Difference between Fundamental Rights and Directive Principles? 🤔',
+          a: 'Great UPSC question!<br><br>⚖️ <strong>Fundamental Rights (Part III):</strong><br>• Justiciable — courts can enforce them<br>• Protect individual rights from state interference<br>• Example: Right to Equality, Freedom of Speech<br><br>📋 <strong>Directive Principles (Part IV):</strong><br>• Non-justiciable — courts cannot enforce directly<br>• Guide state toward social welfare goals<br>• Example: Equal pay for equal work, free legal aid<br><br>🔑 <strong>UPSC key:</strong> Minerva Mills (1980) held both must be balanced! 💪',
+          time: 'MyGuru AI · UPSC GS ✓✓',
+        },
+      }
+
+      function showDemo(lang, btn) {
+        document.querySelectorAll('.lang-tab').forEach((t) => {
+          t.classList.remove('active')
+          t.setAttribute('aria-selected', 'false')
+        })
+        btn.classList.add('active')
+        btn.setAttribute('aria-selected', 'true')
+        const d = demos[lang]
+        document.getElementById('demo-status').textContent = d.status
+        document.getElementById('demo-msgs').innerHTML = `
+    <div class="msg msg--student tamil">${d.q}</div>
+    <div class="msg msg--ai tamil">${d.a}</div>
+    <div class="msg__time">${d.time}</div>
+  `
+      }
+
+      /* ── EXAM CARD KEYBOARD ── */
+      document.querySelectorAll('.exam-card').forEach((card) => {
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            location.href = '#start'
+          }
+        })
+      })
+
+      /* ── SIGNUP ── */
+      const BLOCKED_DOMAINS = [
+        'mailinator.com',
+        'guerrillamail.com',
+        'temp-mail.org',
+        'yopmail.com',
+        'throwaway.email',
+        '10minutemail.com',
+        'trashmail.com',
+      ]
+
+      function handleSignup(e) {
+        e.preventDefault()
+        const email = document.getElementById('signup-email').value.trim()
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          alert('சரியான email address கொடுங்க')
+          return
+        }
+
+        const domain = email.split('@')[1].toLowerCase()
+        if (BLOCKED_DOMAINS.includes(domain)) {
+          alert('Please use a real email address (Gmail, Yahoo, Outlook etc.)')
+          return
+        }
+
+        let normalized = email.toLowerCase()
+        if (domain === 'gmail.com') {
+          const user = normalized.split('@')[0].split('+')[0].replace(/\./g, '')
+          normalized = user + '@gmail.com'
+        }
+
+        // In production: POST to /api/signup with normalized email
+        alert(
+          "வரவேற்கிறோம்! 🎉\n\nWe\'ll send your login OTP to:\n" +
+            email +
+            '\n\n10 free questions/day — start right now!',
+        )
+        document.getElementById('signup-email').value = ''
+      }
+
+      /* ── REDUCED MOTION ── */
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'))
+        document
+          .querySelectorAll('.marquee__track')
+          .forEach((el) => (el.style.animationDuration = '0.001s'))
+      }
+    </script>
+  </body>
+</html>
