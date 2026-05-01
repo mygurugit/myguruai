@@ -1,0 +1,50 @@
+# ============================================
+# MyGuru AI — .gitignore
+# NEVER commit any of these files to GitHub
+# ============================================
+
+# ── SECRETS — most important ──
+.env
+.env.local
+.env.development
+.env.production
+*.key
+*.pem
+secrets/
+
+# ── NODE ──
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ── WINDOWS ──
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ── VS CODE ──
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# ── BUILD OUTPUT ──
+dist/
+build/
+.next/
+out/
+
+# ── LOGS ──
+logs/
+*.log
+
+# ── TEMP FILES ──
+.tmp/
+.cache/
+*.tmp
+
+# ── OS FILES ──
+.DS_Store
+*.swp
+*~

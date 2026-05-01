@@ -1,0 +1,36 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.6,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "boundary",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.exclude": {
+    "node_modules": true,
+    ".git": true
+  },
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.printWidth": 100,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "workbench.colorTheme": "Dark+",
+  "workbench.iconTheme": "vs-seti",
+  "[html]": {
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[sql]": {
+    "editor.formatOnSave": false
+  }
+}

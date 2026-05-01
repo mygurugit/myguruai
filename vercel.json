@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "name": "myguruai",
+  "builds": [
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/frontend/index.html"
+    },
+    {
+      "src": "/login",
+      "dest": "/frontend/login.html"
+    },
+    {
+      "src": "/signup",
+      "dest": "/frontend/signup.html"
+    },
+    {
+      "src": "/app",
+      "dest": "/frontend/dashboard.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/frontend/dashboard.html"
+    },
+    {
+      "src": "/pricing",
+      "dest": "/frontend/pricing.html"
+    },
+    {
+      "src": "/account",
+      "dest": "/frontend/account.html"
+    },
+    {
+      "src": "/admin",
+      "dest": "/frontend/pages/admin.html"
+    },
+    {
+      "src": "/privacy",
+      "dest": "/frontend/privacy.html"
+    },
+    {
+      "src": "/terms",
+      "dest": "/frontend/terms.html"
+    },
+    {
+      "src": "/refund",
+      "dest": "/frontend/refund.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}
